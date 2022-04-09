@@ -2,70 +2,14 @@
   <div id="wrapper" class="course-watch bg-black">
     <!-- Main Contents -->
     <div class="main_content h-screen flex justify-center items-center">
-      <ul id="video_tabs" class="uk-switcher w-full">
-        <li>
-          <!-- to autoplay video uk-video="automute: true" -->
-          <div class="embed-video">
-            <iframe
-              src="https://www.youtube.com/embed/9gTw2EDkaDQ"
-              frameborder="0"
-              uk-video="automute: true"
-              allowfullscreen
-              uk-responsive
-            ></iframe>
-          </div>
-        </li>
-        <li>
-          <div class="embed-video">
-            <iframe
-              src="https://www.youtube.com/embed/dDn9uw7N9Xg"
-              frameborder="0"
-              allowfullscreen
-              uk-responsive
-            ></iframe>
-          </div>
-        </li>
-        <li>
-          <div class="embed-video">
-            <iframe
-              src="https://www.youtube.com/embed/CGSdK7FI9MY"
-              frameborder="0"
-              allowfullscreen
-              uk-responsive
-            ></iframe>
-          </div>
-        </li>
-        <li>
-          <div class="embed-video">
-            <iframe
-              src="https://www.youtube.com/embed/4I1WgJz_lmA"
-              frameborder="0"
-              allowfullscreen
-              uk-responsive
-            ></iframe>
-          </div>
-        </li>
-        <li>
-          <div class="embed-video">
-            <iframe
-              src="https://www.youtube.com/embed/dDn9uw7N9Xg"
-              frameborder="0"
-              allowfullscreen
-              uk-responsive
-            ></iframe>
-          </div>
-        </li>
-        <li>
-          <div class="embed-video">
-            <iframe
-              src="https://www.youtube.com/embed/CPcS4HtrUEU"
-              frameborder="0"
-              allowfullscreen
-              uk-responsive
-            ></iframe>
-          </div>
-        </li>
-      </ul>
+      <youtube
+        v-if="videoId"
+        ref="youtube"
+        :video-id="videoId"
+        width="100%"
+        height="85%"
+      ></youtube>
+      <div v-else>Mulai perjalanan belajar kamu</div>
     </div>
 
     <!-- This is the modal -->
@@ -145,7 +89,7 @@
         <a
           href="#"
           class="flex items-center text-blue-500"
-          @click.prevent="$router.back()"
+          @click.prevent="$router.push('/')"
         >
           <ion-icon
             name="chevron-back-outline"
@@ -163,8 +107,6 @@
       <nav class="cd-secondary-nav nav-small extanded w-auto lg:block hidden">
         <ul uk-switcher="connect: #course-tabs; animation: uk-animation-fade">
           <li><a href="#" class="lg:px-2"> Overview </a></li>
-          <li><a href="#" class="lg:px-2"> Notes </a></li>
-          <li><a href="#" class="lg:px-2"> Faq </a></li>
         </ul>
       </nav>
 
@@ -172,136 +114,32 @@
 
       <!-- sidebar list -->
       <div class="sidebar_inner" data-simplebar>
-        <div class="uk-switcher" id="course-tabs">
+        <div id="course-tabs" class="uk-switcher">
           <div id="curriculum">
             <div uk-accordion="multiple: true" class="divide-y space-y-3">
-              <div class="pt-2 uk-open">
+              <div
+                v-for="(chapter, index) in chapters"
+                :key="chapter.id"
+                class="pt-2 uk-open"
+              >
                 <a
                   class="uk-accordion-title text-md mx-2 font-semibold"
                   href="#"
                 >
-                  <div class="mb-1 text-sm font-medium">Section 1</div>
-                  Html Introduction
+                  <div class="mb-1 text-sm font-medium">
+                    Section {{ index + 1 }}
+                  </div>
+                  {{ chapter.name }}
                 </a>
                 <div class="uk-accordion-content mt-3">
-                  <ul
-                    class="course-curriculum-list"
-                    uk-switcher="connect: #video_tabs; animation: uk-animation-fade"
-                  >
-                    <li>
-                      <a href="#">
-                        Introduction <span class="hidden"> 4 min </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        What is HTML <span class="hidden"> 5 min </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        What is a Web page? <span class="hidden"> 8 min </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Your First Web Page
-                        <span class="hidden"> 4 min </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Brain Streak <span class="hidden"> 5 min </span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="pt-2 uk-open">
-                <a
-                  class="uk-accordion-title text-md mx-2 font-semibold"
-                  href="#"
-                >
-                  <div class="mb-1 text-sm font-medium">Section 2</div>
-                  Your First webpage
-                </a>
-                <div class="uk-accordion-content mt-3">
-                  <ul class="course-curriculum-list">
-                    <li>
-                      <a href="#modal-example" uk-toggle>
-                        Headings
-                        <span> 4 min </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#modal-example" uk-toggle>
-                        Paragraphs
-                        <span> 5 min </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#modal-example" uk-toggle>
-                        Emphasis and Strong Tag
-                        <span> 8 min </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#modal-example" uk-toggle>
-                        Brain Streak
-                        <span> 4 min </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#modal-example" uk-toggle>
-                        Live Preview Feature
-                        <span> 5 min </span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="pt-2">
-                <a
-                  class="uk-accordion-title text-md mx-2 font-semibold"
-                  href="#"
-                >
-                  <div class="mb-1 text-sm font-medium">Section 3</div>
-                  Build Complete Webste
-                </a>
-                <div class="uk-accordion-content mt-3">
-                  <ul class="course-curriculum-list">
-                    <li>
-                      <a href="#">
-                        The paragraph tag
-                        <span class="hidden"> 4 min </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        The break tag
-                        <span class="hidden"> 5 min </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Headings in HTML
-                        <span class="hidden"> 8 min </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Bold, Italics Underline
-                        <span class="hidden"> 4 min </span>
-                      </a>
-                    </li>
-                  </ul>
+                  <Lessons :chapter-id="chapter.id" @change="changeYoutubeId" />
                 </div>
               </div>
             </div>
           </div>
 
           <!--  Overview -->
-          <div class="space-y-6 px-2 py-6">
+          <!-- <div class="space-y-6 px-2 py-6">
             <div>
               <h3 class="text-lg font-semibold mb-1">Description</h3>
               <p>
@@ -353,10 +191,10 @@
                 <li>Basic/Minimal understanding of JavaScript</li>
               </ul>
             </div>
-          </div>
+          </div> -->
 
           <!--  Announcements -->
-          <div class="px-2 py-6">
+          <!-- <div class="px-2 py-6">
             <h3 class="text-xl font-semibold mb-3">Announcement</h3>
 
             <div class="flex items-center gap-x-4 mb-5">
@@ -391,7 +229,7 @@
               tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
               consequat.
             </p>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -405,7 +243,12 @@
 </template>
 
 <script>
+import Lessons from '@/components/partials/learn/Lessons.vue'
+
 export default {
+  components: {
+    Lessons,
+  },
   layout: 'full',
   async asyncData({ $axios, params }) {
     try {
@@ -415,13 +258,33 @@ export default {
           slug: params.slug,
         },
       })
+      const course = response.data.data[0]
+      const chapters = await $axios.get('/chapters', {
+        params: {
+          per_page: 15,
+          course_id: course.id,
+          order_by: ['created_at', 'asc'],
+        },
+      })
 
       return {
-        course: response.data.data[0],
+        course,
+        chapters: chapters.data.data,
       }
     } catch (error) {
       //
     }
+  },
+  data() {
+    return {
+      chapters: [],
+      videoId: null,
+    }
+  },
+  methods: {
+    changeYoutubeId(id) {
+      this.videoId = id
+    },
   },
 }
 </script>

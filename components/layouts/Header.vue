@@ -1,7 +1,18 @@
 <template>
   <header
-    class="is-transparent is-dark border-b backdrop-filter backdrop-blur-2xl"
-    uk-sticky="cls-inactive: is-dark is-transparent border-b"
+    :class="{
+      'is-transparent is-dark border-b backdrop-filter backdrop-blur-2xl':
+        $route.name === 'index' ||
+        $route.name === 'courses-slug' ||
+        $route.name === 'faq',
+    }"
+    :uk-sticky="
+      $route.name === 'index' ||
+      $route.name === 'courses-slug' ||
+      $route.name === 'faq'
+        ? 'cls-inactive: is-dark is-transparent border-b'
+        : null
+    "
   >
     <div class="header_inner">
       <div class="left-side">
@@ -134,7 +145,23 @@
                 </ul>
               </div>
             </li>
-            <li><a href="blog.html"> Help</a></li>
+            <li>
+              <a href="#">Bantuan</a>
+              <div uk-drop="mode: click" class="xdropdown">
+                <ul>
+                  <li>
+                    <nuxt-link :to="{ name: 'faq' }" class="text-gray-500">
+                      FAQ
+                    </nuxt-link>
+                  </li>
+                  <li>
+                    <nuxt-link :to="{ name: 'help' }" class="text-gray-500">
+                      Pusat Bantuan
+                    </nuxt-link>
+                  </li>
+                </ul>
+              </div>
+            </li>
             <li>
               <a href="#">About</a>
             </li>
@@ -149,93 +176,6 @@
       </div>
       <div class="right-side">
         <template v-if="$auth.loggedIn">
-          <!-- notification -->
-          <a href="#" class="header_widgets">
-            <ion-icon name="mail-outline" class="is-icon"></ion-icon>
-          </a>
-          <div uk-drop="mode: click" class="header_dropdown">
-            <div class="drop_headline">
-              <h4>Notifications</h4>
-              <div class="btn_action">
-                <div class="btn_action">
-                  <a href="#">
-                    <ion-icon
-                      name="settings-outline"
-                      uk-tooltip="title: Notifications settings ; pos: left"
-                    ></ion-icon>
-                  </a>
-                  <a href="#">
-                    <ion-icon
-                      name="checkbox-outline"
-                      uk-tooltip="title: Mark as read all ; pos: left"
-                    ></ion-icon>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <ul class="dropdown_scrollbar" data-simplebar>
-              <li>
-                <a href="#">
-                  <div class="drop_avatar">
-                    <img src="images/avatars/avatar-1.jpg" alt="" />
-                  </div>
-                  <div class="drop_content">
-                    <p>
-                      <strong>Adrian Mohani</strong> Like Your Comment On Course
-                      <span class="text-link">Javascript Introduction </span>
-                    </p>
-                    <span class="time-ago"> 2 hours ago </span>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <div class="drop_avatar">
-                    <img src="images/avatars/avatar-2.jpg" alt="" />
-                  </div>
-                  <div class="drop_content">
-                    <p>
-                      <strong>Stella Johnson</strong> Replay Your Comments in
-                      <span class="text-link">Programming for Games</span>
-                    </p>
-                    <span class="time-ago"> 9 hours ago </span>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <div class="drop_avatar">
-                    <img src="images/avatars/avatar-3.jpg" alt="" />
-                  </div>
-                  <div class="drop_content">
-                    <p>
-                      <strong>Alex Dolgove</strong> Added New Review In Course
-                      <span class="text-link">Full Stack PHP Developer</span>
-                    </p>
-                    <span class="time-ago"> 12 hours ago </span>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <div class="drop_avatar">
-                    <img src="images/avatars/avatar-1.jpg" alt="" />
-                  </div>
-                  <div class="drop_content">
-                    <p>
-                      <strong>Jonathan Madano</strong> Shared Your Discussion On
-                      Course
-                      <span class="text-link">Css Flex Box </span>
-                    </p>
-                    <span class="time-ago"> Yesterday </span>
-                  </div>
-                </a>
-              </li>
-            </ul>
-            <a href="#" class="see-all">See all</a>
-          </div>
-
           <!-- messages -->
           <a href="#" class="header_widgets">
             <ion-icon name="notifications-outline" class="is-icon"></ion-icon>

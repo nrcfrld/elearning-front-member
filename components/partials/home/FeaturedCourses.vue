@@ -5,112 +5,86 @@
       <h2 class="text-2xl font-semibold">Featured Classes</h2>
     </div>
 
-    <div class="relative -mt-3" uk-slider="finite: true">
+    <div v-if="$fetchState.pending">
+      <SkeletonLoader
+        type="rect"
+        animation="wave"
+        width="100%"
+        height="240px"
+        rounded
+      />
+    </div>
+
+    <div v-else class="relative -mt-3" uk-slider="finite: true">
       <div class="uk-slider-container px-1 py-3">
         <ul class="uk-slider-items uk-child-width-1-1@m uk-grid">
-          <li>
-            <div
-              class="bg-white shadow-sm rounded-lg uk-transition-toggle md:flex"
-            >
+          <li v-for="course in courses" :key="course.id">
+            <nuxt-link to="/">
               <div
                 class="
-                  md:w-5/12 md:h-60
-                  h-40
-                  overflow-hidden
-                  rounded-l-lg
-                  relative
+                  bg-white
+                  shadow-sm
+                  rounded-lg
+                  uk-transition-toggle
+                  md:flex
+                  text-gray-700
                 "
               >
-                <img
-                  src="images/courses/img-6.jpg"
-                  alt=""
-                  class="w-full h-full absolute inset-0 object-cover"
-                />
-                <img
-                  src="images/icon-play.svg"
-                  class="w-16 h-16 uk-position-center uk-transition-fade"
-                  alt=""
-                />
-              </div>
-              <div class="flex-1 md:p-6 p-4">
                 <div
                   class="
-                    font-semibold
-                    line-clamp-2
-                    md:text-xl md:leading-relaxed
+                    md:w-5/12 md:h-60
+                    h-40
+                    overflow-hidden
+                    rounded-l-lg
+                    relative
                   "
                 >
-                  Learn How to Build Responsive Web Design Essentials HTML5 CSS3
-                  and Bootstrap
+                  <img
+                    :src="course.thumbnail"
+                    alt=""
+                    class="w-full h-full absolute inset-0 object-cover"
+                  />
+                  <img
+                    src="images/icon-play.svg"
+                    class="w-16 h-16 uk-position-center uk-transition-fade"
+                    alt=""
+                  />
                 </div>
-                <div class="line-clamp-2 mt-2 md:block hidden">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                  diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                  aliquam erat volutpat. Ut wisi enim ad minim veniam
-                </div>
-                <div class="font-semibold mt-3">John Michael</div>
-                <div class="mt-1 flex items-center justify-between">
-                  <div class="flex space-x-2 items-center text-sm pt-2">
-                    <div>13 hours</div>
-                    <div>·</div>
-                    <div>32 lectures</div>
+                <div class="flex-1 md:p-6 p-4">
+                  <div
+                    class="
+                      font-semibold
+                      line-clamp-2
+                      md:text-xl md:leading-relaxed
+                    "
+                  >
+                    {{ course.name }}
                   </div>
-                  <div class="text-lg font-semibold">$14.99</div>
+                  <div class="line-clamp-2 mt-2 md:block hidden">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+                    magna aliquam erat volutpat. Ut wisi enim ad minim veniam
+                  </div>
+                  <div class="font-semibold mt-3">
+                    <!-- {{ course.mentors[0].name }} -->
+                  </div>
+                  <div class="mt-1 flex items-center justify-between">
+                    <div class="flex space-x-2 items-center text-sm pt-2">
+                      <div>{{ timeConvert(course.minutes) }}</div>
+                      <div>·</div>
+                      <div>{{ course.totalLessons }} lessons</div>
+                    </div>
+                    <div v-if="course.price > 1" class="text-lg font-semibold">
+                      Rp.
+                      {{ new Intl.NumberFormat('id-ID').format(course.price) }}
+                    </div>
+                    <div v-else class="text-lg font-semibold text-green-500">
+                      Gratis
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div
-              class="bg-white shadow-sm rounded-lg uk-transition-toggle md:flex"
+              </div></nuxt-link
             >
-              <div
-                class="
-                  md:w-5/12 md:h-60
-                  h-40
-                  overflow-hidden
-                  rounded-l-lg
-                  relative
-                "
-              >
-                <img
-                  src="images/courses/img-1.jpg"
-                  alt=""
-                  class="w-full h-full absolute inset-0 object-cover"
-                />
-                <img
-                  src="images/icon-play.svg"
-                  class="w-16 h-16 uk-position-center uk-transition-fade"
-                  alt=""
-                />
-              </div>
-              <div class="flex-1 md:p-6 p-4">
-                <div
-                  class="
-                    font-semibold
-                    line-clamp-2
-                    md:text-xl md:leading-relaxed
-                  "
-                >
-                  Learn JavaScript and Express to become a professional
-                  JavaScript developer.
-                </div>
-                <div class="line-clamp-2 mt-2 md:block hidden">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                  diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                  aliquam erat volutpat. Ut wisi enim ad minim veniam
-                </div>
-                <div class="font-semibold mt-3">John Michael</div>
-                <div class="mt-1 flex items-center justify-between">
-                  <div class="flex space-x-2 items-center text-sm pt-2">
-                    <div>13 hours</div>
-                    <div>·</div>
-                    <div>32 lectures</div>
-                  </div>
-                  <div class="text-lg font-semibold">$14.99</div>
-                </div>
-              </div>
-            </div>
           </li>
         </ul>
       </div>
@@ -166,7 +140,34 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      courses: [],
+    }
+  },
+  async fetch() {
+    try {
+      const response = await this.$axios.get('/courses')
+
+      this.courses = response.data.data
+    } catch (error) {
+      alert('Terjadi Kesalahan')
+    }
+  },
+  methods: {
+    timeConvert(n) {
+      const num = n
+      const hours = num / 60
+      const rhours = Math.floor(hours)
+      if (rhours < 1) {
+        return n + ' Min'
+      } else {
+        return rhours + ' Hours'
+      }
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped></style>

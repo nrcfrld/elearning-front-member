@@ -128,6 +128,8 @@
       <FeaturedCourses />
 
       <PopularCourses />
+
+      <FeaturedTopics />
     </div>
   </div>
 </template>
@@ -135,12 +137,14 @@
 <script>
 import PopularCourses from '@/components/partials/home/PopularCourses.vue'
 import FeaturedCourses from '@/components/partials/home/FeaturedCourses.vue'
+import FeaturedTopics from '@/components/partials/home/FeaturedTopics.vue'
 
 export default {
   auth: false,
   components: {
     PopularCourses,
     FeaturedCourses,
+    FeaturedTopics,
   },
   layout: 'default',
 }

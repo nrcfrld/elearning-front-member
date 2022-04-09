@@ -1,8 +1,5 @@
 <template>
   <div>
-    <h3 id="curriculum" class="mb-4 text-xl font-semibold lg:mb-5">
-      Course Curriculum
-    </h3>
     <SkeletonLoader
       v-if="loading"
       type="rect"
@@ -11,26 +8,34 @@
       height="120px"
       rounded
     />
-    <ul
-      v-if="!loading"
-      uk-accordion="multiple: true"
-      class="chapters-list tube-card divide-y space-y-3"
-    >
-      <li
-        v-for="(chapter, index) in chapters"
-        :key="chapter.id"
-        :class="{ 'uk-open': index === 0 }"
-        class="px-5 py-3"
+    <div class="tube-card">
+      <h3
+        id="curriculum"
+        class="mb-4 text-xl font-semibold lg:mb-5 px-5 pt-5 lg:px-8"
       >
-        <a class="uk-accordion-title text-md mx-2 font-semibold" href="#">
-          <div class="mb-1 text-sm font-medium">Section {{ index + 1 }}</div>
-          {{ chapter.name }}
-        </a>
-        <div class="uk-accordion-content mt-3 text-base">
-          <CourseCurriculumList :chapter="chapter" />
-        </div>
-      </li>
-    </ul>
+        Course Curriculum
+      </h3>
+      <ul
+        v-if="!loading"
+        uk-accordion="multiple: true"
+        class="chapters-list tube-card divide-y space-y-3 border-0"
+      >
+        <li
+          v-for="(chapter, index) in chapters"
+          :key="chapter.id"
+          :class="{ 'uk-open': index === 0 }"
+          class="px-5 py-3"
+        >
+          <a class="uk-accordion-title text-md mx-2 font-semibold" href="#">
+            <div class="mb-1 text-sm font-medium">Section {{ index + 1 }}</div>
+            {{ chapter.name }}
+          </a>
+          <div class="uk-accordion-content mt-3 text-base">
+            <CourseCurriculumList :chapter="chapter" />
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 

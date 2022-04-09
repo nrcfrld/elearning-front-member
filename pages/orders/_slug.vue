@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto max-w-5xl p-4 mt-16">
+  <div class="mx-auto max-w-5xl p-4 mt-32">
     <section>
       <h1 class="text-center font-bold mb-4">Checkout Kelas</h1>
       <p class="text-gray-800 text-center">

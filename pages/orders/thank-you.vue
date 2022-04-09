@@ -1,5 +1,7 @@
 <template>
-  <div class="min-h-full flex justify-center align-items-center px-4 pb-16">
+  <div
+    class="min-h-full flex justify-center align-items-center px-4 pb-16 mt-32"
+  >
     <div
       class="
         bg-white
@@ -714,7 +716,10 @@
           perjalanan belajar kamu.
         </p>
         <nuxt-link
-          to="/"
+          :to="{
+            name: 'learn-slug',
+            params: { slug: $store.state.course.course.slug },
+          }"
           class="
             bg-purple-500
             hover:bg-purple-600

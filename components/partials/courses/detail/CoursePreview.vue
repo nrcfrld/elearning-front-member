@@ -47,31 +47,18 @@
             </h1>
             <div class="lg:w-4/5 mt-4 md:text-lg md:block hidden">
               <div class="flex -space-x-2">
-                <img
+                <!-- <img
+                  v-for="mentor in course.mentors"
+                  :key="mentor.id"
                   class="inline-block h-8 w-8 rounded-full ring-2 ring-white"
-                  src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  :src="mentor.avatar"
                   alt=""
-                />
-                <img
-                  class="inline-block h-8 w-8 rounded-full ring-2 ring-white"
-                  src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                />
-                <img
-                  class="inline-block h-8 w-8 rounded-full ring-2 ring-white"
-                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80"
-                  alt=""
-                />
-                <img
-                  class="inline-block h-8 w-8 rounded-full ring-2 ring-white"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                />
+                /> -->
               </div>
             </div>
 
             <ul class="flex text-gray-300 gap-4 mt-4 mb-3">
-              <li class="flex items-center">
+              <!-- <li class="flex items-center">
                 <span
                   class="
                     avg
@@ -92,24 +79,24 @@
                   <ion-icon name="star"></ion-icon>
                   <ion-icon name="star-half"></ion-icon>
                 </div>
-              </li>
+              </li> -->
               <li>
-                <ion-icon name="people-circle-outline"></ion-icon> 1200
-                Enerolled
+                <ion-icon name="people-circle-outline"></ion-icon>
+                {{ course.totalEnrolled }} telah bergabung
               </li>
             </ul>
             <ul class="lg:flex text-gray-200">
               <li>
-                Created by
+                Dibuat oleh
                 <a
                   href="#"
                   class="text-white fond-bold hover:underline hover:text-white"
                 >
-                  {{ course.created_by }}
+                  <!-- {{ course.mentors[0].name }} -->
                 </a>
               </li>
               <span class="lg:block hidden mx-3 text-2xl">·</span>
-              <li>Last updated 10/2019</li>
+              <li>Terakhir diperbarui {{ course.updatedAt }}</li>
             </ul>
           </div>
         </div>

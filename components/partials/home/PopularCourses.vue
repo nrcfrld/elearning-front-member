@@ -11,7 +11,7 @@
         <ion-icon name="star"></ion-icon> Featured today
       </h4>
 
-      <div v-if="loading">
+      <div v-if="$fetchState.pending">
         <div class="grid grid-cols-1 md:grid-cols-3 mt-8 w-100">
           <div class="px-2">
             <SkeletonLoader
@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <div v-if="!loading" class="relative" uk-slider="finite: true">
+      <div v-else class="relative" uk-slider="finite: true">
         <div class="uk-slider-container px-1 py-3">
           <ul
             class="
@@ -87,7 +87,7 @@
                       {{ course.name }}
                     </div>
                     <div class="flex space-x-2 items-center text-sm pt-3">
-                      <div>13 hours</div>
+                      <div>{{ timeConvert(course.minutes) }}</div>
                       <div>·</div>
                       <div>32 lessons</div>
                     </div>
@@ -168,20 +168,28 @@ export default {
   data() {
     return {
       courses: [],
-      loading: true,
     }
   },
-  async mounted() {
+  async fetch() {
     try {
-      this.loading = true
       const response = await this.$axios.get('/courses')
 
       this.courses = response.data.data
     } catch (error) {
       alert('Terjadi Kesalahan')
-    } finally {
-      this.loading = false
     }
+  },
+  methods: {
+    timeConvert(n) {
+      const num = n
+      const hours = num / 60
+      const rhours = Math.floor(hours)
+      if (rhours < 1) {
+        return n + ' Min'
+      } else {
+        return rhours + ' Hours'
+      }
+    },
   },
 }
 </script>

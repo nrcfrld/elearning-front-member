@@ -35,7 +35,12 @@ export default {
         body: true,
       },
       {
+        src: 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js',
+        type: 'module',
+      },
+      {
         src: 'https://unpkg.com/ionicons@5.2.3/dist/ionicons.js',
+        nomodule: true,
       },
       {
         src: 'https://app.sandbox.midtrans.com/snap/snap.js',
@@ -52,7 +57,14 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~plugins/vue-skeleton-loader.js'],
+  plugins: [
+    {
+      src: '~plugins/vue-skeleton-loader.js',
+    },
+    {
+      src: '~plugins/vue-youtube.js',
+    },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -76,7 +88,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'http://hecolab.tech/backend-elearning',
+    baseURL: 'https://hecolab.tech',
   },
 
   router: {
@@ -111,7 +123,7 @@ export default {
     strategies: {
       laravelJWT: {
         provider: 'laravel/jwt',
-        url: 'http://hecolab.tech/backend-elearning',
+        url: 'https://hecolab.tech',
         endpoints: {
           login: {
             url: '/auth/jwt/token',
@@ -145,7 +157,7 @@ export default {
     },
   },
 
-  loading: '~/components/elements/Preloader.vue',
+  loading: '~/components/elements/PageLoader.vue',
 
   server: {
     port: 3000,
@@ -155,16 +167,6 @@ export default {
   vue: {
     config: {
       ignoredElements: [/^ion-/],
-    },
-  },
-
-  tailwindcss: {
-    config: {
-      variants: {
-        extend: {
-          opacity: ['disabled'],
-        },
-      },
     },
   },
 }
