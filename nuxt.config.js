@@ -169,4 +169,6 @@ export default {
       ignoredElements: [/^ion-/],
     },
   },
+
+  target: 'static',
 }
