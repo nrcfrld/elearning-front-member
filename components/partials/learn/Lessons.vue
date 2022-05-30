@@ -1,15 +1,27 @@
 <template>
-  <ul
-    class="course-curriculum-list"
-    uk-switcher="connect: #video_tabs; animation: uk-animation-fade"
-  >
-    <li
-      v-for="lesson in lessons"
-      :key="lesson.id"
-      @click="$emit('change', lesson.youtubeId)"
-    >
-      <a href="#">
-        {{ lesson.name }} <span> {{ lesson.minutes }} min </span>
+  <ul class="course-curriculum-list">
+    <li v-for="lesson in lessons" :key="lesson.id">
+      <a
+        :class="{
+          'bg-green-100': lesson.isCompleted,
+          'bg-blue-100': lesson.id === currentLessonId,
+        }"
+        href="#"
+        @click.prevent="
+          $emit('change', { youtubeId: lesson.youtubeId, lessonId: lesson.id })
+        "
+      >
+        {{ lesson.name }}
+        <span v-show="!lesson.isCompleted"> {{ lesson.minutes }} min </span>
+        <span
+          v-if="lesson.isCompleted"
+          class="text-lg flex flex-column justify-center"
+        >
+          <ion-icon
+            v-show="lesson.isCompleted"
+            name="checkmark-circle-outline"
+          ></ion-icon>
+        </span>
       </a>
     </li>
   </ul>
@@ -19,6 +31,10 @@
 export default {
   props: {
     chapterId: {
+      type: String,
+      default: '',
+    },
+    currentLessonId: {
       type: String,
       default: '',
     },

@@ -47,13 +47,13 @@
             </h1>
             <div class="lg:w-4/5 mt-4 md:text-lg md:block hidden">
               <div class="flex -space-x-2">
-                <!-- <img
+                <img
                   v-for="mentor in course.mentors"
                   :key="mentor.id"
                   class="inline-block h-8 w-8 rounded-full ring-2 ring-white"
                   :src="mentor.avatar"
                   alt=""
-                /> -->
+                />
               </div>
             </div>
 
@@ -92,11 +92,11 @@
                   href="#"
                   class="text-white fond-bold hover:underline hover:text-white"
                 >
-                  <!-- {{ course.mentors[0].name }} -->
+                  {{ course.mentors[0].name }}
                 </a>
               </li>
               <span class="lg:block hidden mx-3 text-2xl">·</span>
-              <li>Terakhir diperbarui {{ course.updatedAt }}</li>
+              <li>Terakhir diperbarui {{ course.updatedAt | formatDate }}</li>
             </ul>
           </div>
         </div>
@@ -117,7 +117,7 @@
 
         <div class="embed-video">
           <iframe
-            src="https://www.youtube.com/embed/nOCXXHGMezU"
+            :src="course.trailerUrl"
             class="w-full"
             uk-video="automute: true"
             frameborder="0"
@@ -126,7 +126,7 @@
           ></iframe>
         </div>
 
-        <div class="uk-modal-body">
+        <!-- <div class="uk-modal-body">
           <h3 class="text-lg font-semibold mb-2">Build Responsive Websites</h3>
           <p>
             Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -134,7 +134,7 @@
             cupidatat non proident, sunt in culpa qui officia deserunt mollit
             anim id est laborum.
           </p>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -142,6 +142,13 @@
 
 <script>
 export default {
+  filters: {
+    formatDate(val) {
+      let date = Date.parse(val)
+      date = new Date(date)
+      return date.toLocaleString()
+    },
+  },
   props: {
     course: {
       type: Object,

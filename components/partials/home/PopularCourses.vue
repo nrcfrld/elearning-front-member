@@ -89,7 +89,7 @@
                     <div class="flex space-x-2 items-center text-sm pt-3">
                       <div>{{ timeConvert(course.minutes) }}</div>
                       <div>·</div>
-                      <div>32 lessons</div>
+                      <div>{{ course.totalLessons }} lessons</div>
                     </div>
                     <div class="pt-1 flex items-center justify-between">
                       <div class="text-sm">
@@ -181,14 +181,12 @@ export default {
   },
   methods: {
     timeConvert(n) {
-      const num = n
-      const hours = num / 60
-      const rhours = Math.floor(hours)
-      if (rhours < 1) {
-        return n + ' Min'
-      } else {
-        return rhours + ' Hours'
+      if (n < 60) {
+        return n + ' Minutes'
       }
+      const hours = n / 60
+      const rhours = Math.floor(hours)
+      return rhours + ' Hours'
     },
   },
 }

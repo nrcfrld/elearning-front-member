@@ -88,7 +88,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://hecolab.tech',
+    baseURL: 'http://backend-elearning.test',
   },
 
   router: {
@@ -123,7 +123,7 @@ export default {
     strategies: {
       laravelJWT: {
         provider: 'laravel/jwt',
-        url: 'https://hecolab.tech',
+        url: 'http://backend-elearning.test',
         endpoints: {
           login: {
             url: '/auth/jwt/token',

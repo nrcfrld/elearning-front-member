@@ -19,20 +19,9 @@
         <!-- Logo -->
         <div id="logo">
           <nuxt-link to="/">
-            <img
-              src="http://demo.foxthemes.net/courseplus-v4.2/assets/images/logo.png"
-              alt=""
-            />
-            <img
-              src="http://demo.foxthemes.net/courseplus-v4.2/assets/images/logo-light.png"
-              class="logo_inverse"
-              alt=""
-            />
-            <img
-              src="http://demo.foxthemes.net/courseplus-v4.2/assets/images/logo-mobile.png"
-              class="logo_mobile"
-              alt=""
-            />
+            <img src="images/logo_alter.png" alt="" />
+            <img src="images/logo_alter.png" class="logo_inverse" alt="" />
+            <img src="images/logo_alter.png" class="logo_mobile" alt="" />
           </nuxt-link>
         </div>
 

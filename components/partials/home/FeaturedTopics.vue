@@ -190,9 +190,7 @@
               <div
                 class="flex space-x-2 items-center text-sm pt-0.5 text-gray-500"
               >
-                <div>12 Courses</div>
-                <div>·</div>
-                <div>156 Students</div>
+                <div>{{ topic.coursesTotal }} Courses</div>
               </div>
             </div>
           </div>
