@@ -88,7 +88,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'http://backend-elearning.test',
+    baseURL: process.env.API_BASE_URL,
   },
 
   router: {
@@ -123,7 +123,7 @@ export default {
     strategies: {
       laravelJWT: {
         provider: 'laravel/jwt',
-        url: 'http://backend-elearning.test',
+        url: process.env.API_BASE_URL,
         endpoints: {
           login: {
             url: '/auth/jwt/token',
