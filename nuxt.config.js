@@ -1,4 +1,14 @@
 export default {
+  generate: {
+    routes() {
+      return axios.get('https://my-api/users').then((res) => {
+        return res.data.map((user) => {
+          return '/users/' + user.id
+        })
+      })
+    },
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'elearning-front',
