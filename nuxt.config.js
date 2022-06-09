@@ -4,7 +4,7 @@ export default {
   generate: {
     routes() {
       return axios.get(process.env.API_BASE_URL + '/courses').then((res) => {
-        return res.data.map((course) => {
+        return res.data.data.map((course) => {
           return '/courses/' + course.slug
         })
       })
