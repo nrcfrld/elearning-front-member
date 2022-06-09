@@ -1,9 +1,11 @@
+import axios from 'axios'
+
 export default {
   generate: {
     routes() {
-      return axios.get('https://my-api/users').then((res) => {
-        return res.data.map((user) => {
-          return '/users/' + user.id
+      return axios.get(process.env.API_BASE_URL + '/courses').then((res) => {
+        return res.data.map((course) => {
+          return '/courses/' + course.slug
         })
       })
     },
