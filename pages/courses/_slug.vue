@@ -102,6 +102,7 @@
           </nuxt-link>
         </template>
         <button
+          v-if="course.isCompleted"
           class="
             flex
             items-center
